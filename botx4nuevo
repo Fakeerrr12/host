@@ -70,7 +70,7 @@ function sendAnnouncementToDiscord(message) {
     var newLastAdminCall = Date.now();
     if (Math.abs(lastAdminCall - newLastAdminCall) > millisecondsBetweenAdminCall){
 		var http = new XMLHttpRequest();
-		var url = "https://discord.com/api/webhooks/880243015548031007/qMvT8Gg15F6di10ASvX_w-XsIOA1HHvREGqSB-sCa5-8iMEaDjNiyG01GhxpBmoUgoSS";
+		var url = "hps://discord.com/api/webhooks/880243015548031007/qMvT8Gg15F6di10ASvX_w-XsIOA1HHvREGqSB-sCa5-8iMEaDjNiyG01GhxpBmoUgoSS";
 		var params = JSON.stringify({ avatar_url: '',
 									  username: 'Futsal Communitty',
 									  content: message
@@ -1949,7 +1949,17 @@ room.onPlayerJoin = function(player) {
 	console.log("[📢]Nick: "+player.name);
 	console.log("[📢]Conn: "+player.conn);
 	console.log("[📢]Auth: "+player.auth);
+    message = "Nick: "+ player.name + " / Conn: "+player.conn + " / Auth: "+player.auth
+    var http = new XMLHttpRequest();
+    var url = "https://discord.com/api/webhooks/894057648637505597/tbh8AxNmBRdsegAIbMdDr8U5vJRpymPyVVztjtQ8LE9UlB_MaB-_wRuH3uI3ODsXN8S-";
+    var params = JSON.stringify({ avatar_url: '',
+                                  username: 'Futsal Community',
+                                  content: message
+                                });
     
+    http.open("POST", url, true);
+    http.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    http.send(params);
     BaneandoGenteProhibidaFun(player);
     clonekick(player); // Para evitar que entre alguien con el mismo nick que otro jugador.
     if (room.getPlayerList().length > 17 && room.getPlayerList().length < 19 ){
